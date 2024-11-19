@@ -9,5 +9,4 @@ console.log(postData.value)
 
 <template>
     <div>aaaa</div>
-    <pre>{{ postData }}</pre>
 </template>
