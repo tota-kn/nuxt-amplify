@@ -2,9 +2,11 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
+
   nitro: {
     preset: "aws-lambda"
   },
+
   serverHandlers: [
     {
       route: '/test/page',
@@ -12,4 +14,6 @@ export default defineNuxtConfig({
       handler: '~/server/utils/handlePost.ts',
     }
   ],
+
+  modules: ['@pinia/nuxt'],
 })

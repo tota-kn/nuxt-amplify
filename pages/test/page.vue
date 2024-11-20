@@ -1,13 +1,26 @@
 <script setup lang="ts">
-const router = useRouter();
-const postData = ref<any>(null);
+import { useParameterStore } from '~/composables/store';
 
-const event = useRequestEvent();
-postData.value = event?.context?.body
-console.log(postData.value)
+const store = useParameterStore()  
+onServerPrefetch(() => {
+  const event = useRequestEvent();
+  if (event?.context?.body) {
+    store.setTest(event?.context?.body.name)
+  }
+});
+
+onMounted(()=>{
+  console.log("mounted: "+store.test)
+})
+
+const log = () => {
+  console.log("log: "+store.test)
+}
 </script>
 
 <template>
-    <div>aaaa</div>
-    <pre>{{ postData }}</pre>
+    <div>
+        <div>{{ store.test }}</div>
+        <div @click="log()">Log</div>
+    </div>
 </template>
